@@ -140,8 +140,12 @@ class TransactionForm extends React.Component {
       };
     });
 
+    const style = {
+      height: '310px'
+    };
+
     return (
-      <Card fluid>
+      <Card fluid className='transaction-form' style={style}>
         <Card.Content>
           <Card.Header>Transaction Form</Card.Header>
           <Form>

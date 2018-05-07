@@ -34,6 +34,18 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+    window.addEventListener('resize', this.resizeHandler);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resizeHandler);
+  }
+
+  resizeHandler = () => {
+    const availableWidth = window.innerWidth;
+  }
+
   /**
    * newBlock - Callback function. Invoked when one of the miners just mined
    *            a new block. It potentially updates the blockchain for all miners.
@@ -73,6 +85,8 @@ class App extends React.Component {
     this.setState({ txPool: this.state.txPool });
   };
 
+  
+
   render() {
     return (
       <div className="App">
@@ -80,22 +94,19 @@ class App extends React.Component {
         <Container className="top-container">
           <MinerList miners={this.state.miners} newBlock={this.newBlock} />
           <Divider />
-          <Grid>
-            <Grid.Column width={6}>
-              <Grid.Row>
-                <TransactionForm
-                  miners={this.state.miners}
-                  newTx={this.newTx}
-                />
-              </Grid.Row>
-              <Grid.Row>
-                <TxPool txPool={this.state.txPool} />
-              </Grid.Row>
+          <Grid columns={2} className="tx-section">
+            <Grid.Column>
+              <TransactionForm
+                miners={this.state.miners}
+                newTx={this.newTx}
+              />
             </Grid.Column>
-            <Grid.Column width={10}>
-              <BlockChainDisplay chain={this.state.chain} />
+            <Grid.Column>
+              <TxPool txPool={this.state.txPool} />
             </Grid.Column>
           </Grid>
+          <Divider />
+          <BlockChainDisplay chain={this.state.chain} />
         </Container>
       </div>
     );

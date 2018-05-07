@@ -97,13 +97,21 @@ class MinerDisplay extends React.Component {
       this.props.miner.blockchain
     );
 
+    const style = {
+      display: 'inline-block',
+      maxWidth: '200px',
+      minWidth: '125px',
+      margin: '5px',
+      width: '30%'
+    };
+
     return (
-      <Card className="miner">
+      <Card className="miner" style={style}>
         <Card.Content>
           <Card.Header>{`Miner${this.props.minerIndex + 1}`}</Card.Header>
           <Card.Meta>{`Balance: ${balance}`}</Card.Meta>
           <Card.Description>
-            {`Public Key: ${this.miner.wallet.publicKey.substring(0, 10)}...`}
+            {`${this.miner.wallet.publicKey.substring(0, 10)}...`}
           </Card.Description>
         </Card.Content>
         <Card.Content>
