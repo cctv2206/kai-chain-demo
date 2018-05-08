@@ -27,10 +27,13 @@ class App extends React.Component {
       Miner(new BlockChain(), txPool, new Wallet())
     ];
 
+    this.resizeHandler = this.resizeHandler.bind(this);
+
     this.state = {
       chain: this.blockchain.chain,
       miners: miners,
-      txPool: txPool
+      txPool: txPool,
+      mobileLayout: window.innerWidth <= 720
     };
   }
 
@@ -43,8 +46,11 @@ class App extends React.Component {
   }
 
   resizeHandler = () => {
-    const availableWidth = window.innerWidth;
-  }
+    const mobileLayout = window.innerWidth <= 720;
+    if (mobileLayout !== this.state.mobileLayout) {
+      this.setState({ mobileLayout });
+    }
+  };
 
   /**
    * newBlock - Callback function. Invoked when one of the miners just mined
@@ -85,11 +91,11 @@ class App extends React.Component {
     this.setState({ txPool: this.state.txPool });
   };
 
-  
-
   render() {
+    const className = 'kai-chain' + (this.state.mobileLayout ? ' mobile' : '');
+
     return (
-      <div className="App">
+      <div className={className}>
         <link rel="stylesheet" type="text/css" href="css/App.css" />
         <Container className="top-container">
           <MinerList miners={this.state.miners} newBlock={this.newBlock} />
@@ -99,10 +105,14 @@ class App extends React.Component {
               <TransactionForm
                 miners={this.state.miners}
                 newTx={this.newTx}
+                mobileLayout={this.state.mobileLayout}
               />
             </Grid.Column>
             <Grid.Column>
-              <TxPool txPool={this.state.txPool} />
+              <TxPool
+                txPool={this.state.txPool}
+                mobileLayout={this.state.mobileLayout}
+              />
             </Grid.Column>
           </Grid>
           <Divider />

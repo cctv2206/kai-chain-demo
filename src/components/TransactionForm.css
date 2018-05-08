@@ -1,0 +1,11 @@
+.kai-chain .transaction-form {
+  height: 300px;
+}
+
+.kai-chain .transaction-form .ui.button {
+  padding: 10px 7px 10px;
+}
+
+.kai-chain.mobile .transaction-form.card .content .header {
+  font-size: 15px;
+}

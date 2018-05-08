@@ -1,3 +1,7 @@
-.App .top-container {
+.kai-chain .top-container {
   margin-top: 15px;
+}
+
+.kai-chain.mobile .top-container .ui.grid.tx-section .column {
+  padding: 5px;
 }

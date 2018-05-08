@@ -1,0 +1,7 @@
+.kai-chain .tx-pool {
+  height: 300px;
+}
+
+.kai-chain.mobile .tx-pool.card .content .header {
+  font-size: 15px;
+}

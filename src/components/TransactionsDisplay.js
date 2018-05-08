@@ -1,28 +1,50 @@
+require('./TransactionsDisplay.css');
 const React = require('react');
-const { Grid, Segment, Label, Icon } = require('semantic-ui-react');
+const { Grid, Segment, Label, Icon, List } = require('semantic-ui-react');
 const bcWallet = require('../blockchain/BlockchainWallet');
 
 const TransactionsDisplay = props => {
   const transactions = props.transactions;
+  const mobileLayout = props.mobileLayout;
 
-  const txAddressStyle = {
-    paddingTop: '7px',
-    paddingBottom: '7px',
-    display: 'flex'
-  };
-  const labelStyle = {
-    fontSize: '0.7em',
-    paddingTop: '4px',
-    paddingBottom: '4px',
-    float: 'right'
-  };
-  const addressTextStyle = {
-    display: 'inline-block',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    flex: 1
-  };
+  const txRowsMobile = transactions.map((tx, index) => {
+    const { input, outputs, id } = tx;
+    const outputListItems = outputs.map((output, index) => {
+      return (
+        <List.Item key={`{tx-${index}-${id}-${output.address}}`} className="tx-output-item">
+          <div className="address">{output.address}</div>
+          <Label content={`${output.amount} KAI`} className="output-label" />
+        </List.Item>
+      );
+    });
+
+    const outputList = (
+      <Segment className="output">
+        <List divided className="mobile-tx-output-list">
+          {outputListItems}
+        </List>
+      </Segment>
+    );
+
+    return (
+      <Grid.Row key={id}>
+        <Segment className="input">
+          <div className="address">
+            {input.address === bcWallet.publicKey
+              ? 'No Inputs (Newly Generated Coins)'
+              : input.address}
+          </div>
+        </Segment>
+        <Icon
+          className="tx-arrow"
+          name="arrow down"
+          size="large"
+          color="teal"
+        />
+        {outputList}
+      </Grid.Row>
+    );
+  });
 
   const txRows = transactions.map((tx, index) => {
     const { input, outputs, id } = tx;
@@ -30,52 +52,41 @@ const TransactionsDisplay = props => {
       return (
         <Segment
           key={`{tx-${index}-${id}-${output.address}}`}
-          style={txAddressStyle}
+          className="output"
         >
-          <div style={addressTextStyle}>{output.address}</div>
-          <Label content={`${output.amount} KAI`} style={labelStyle} />
+          <div className="address">{output.address}</div>
+          <Label content={`${output.amount} KAI`} className="output-label" />
         </Segment>
       );
     });
 
-    const arrowStyle = {
-      paddingLeft: 0,
-      paddingRight: 0,
-      display: 'flex',
-      alignItems: 'center'
-    };
-
-    const iconStyle = {
-      margin: 'auto'
-    };
-
     return (
       <Grid.Row key={id}>
-        <Grid.Column>
-          <Segment style={txAddressStyle}>
-            <div style={addressTextStyle}>
+        <Grid.Column className="input-column">
+          <Segment className="input">
+            <div className="address">
               {input.address === bcWallet.publicKey
                 ? 'No Inputs (Newly Generated Coins)'
                 : input.address}
             </div>
           </Segment>
         </Grid.Column>
-        <Grid.Column width={1} style={arrowStyle}>
+        <Grid.Column width={1} className="arrow-column">
           <Icon
             name="arrow right"
             size="large"
             color="teal"
-            style={iconStyle}
+            className="tx-arrow"
           />
         </Grid.Column>
-        <Grid.Column>{outputSegments}</Grid.Column>
+        <Grid.Column className="output-column">{outputSegments}</Grid.Column>
       </Grid.Row>
     );
   });
 
   return (
-    <Grid columns="equal" divided="vertically">
-      {txRows}
+    <Grid columns="equal" divided="vertically" className="tx-display mobile">
+      {mobileLayout ? txRowsMobile : txRows}
     </Grid>
   );
 };

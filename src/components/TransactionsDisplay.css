@@ -1,0 +1,56 @@
+.tx-display.ui.grid .ui.segment.input,
+.tx-display.ui.grid .ui.segment.output
+{
+  padding-top: 7px;
+  padding-bottom: 7px;
+  display: flex;
+  width: 90%;
+  margin-left: 5%;
+}
+
+.tx-display.ui.grid .input-column,
+.tx-display.ui.grid .output-column
+{
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.tx-display.ui.grid .column.arrow-column {
+  padding: 0;
+  display: flex;
+}
+
+.tx-display.ui.grid .arrow-column .tx-arrow {
+  margin: auto;
+}
+
+.tx-display.mobile.ui.grid .ui.segment .mobile-tx-output-list {
+  width: 100%;
+}
+
+.tx-display.mobile.ui.grid .ui.segment .tx-output-item {
+  display: flex;
+}
+
+.tx-display.ui.grid .ui.segment.output {
+  display: flex;
+}
+
+.tx-display.ui.grid .ui.segment .address {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.tx-display.mobile.ui.grid .tx-arrow {
+  margin-left: 5%;
+}
+
+.tx-display .ui.label.output-label {
+  font-size: 0.7em;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  float: right;
+}

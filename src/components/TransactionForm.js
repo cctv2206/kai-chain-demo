@@ -1,3 +1,4 @@
+require('./TransactionForm.css');
 const React = require('react');
 const {
   Card,
@@ -140,20 +141,16 @@ class TransactionForm extends React.Component {
       };
     });
 
-    const style = {
-      height: '310px'
-    };
-
     return (
-      <Card fluid className='transaction-form' style={style}>
+      <Card fluid className='transaction-form'>
         <Card.Content>
           <Card.Header>Transaction Form</Card.Header>
           <Form>
             {this.getMinerDropdownField(true, minerOptions)}
             {this.getMinerDropdownField(false, minerOptions)}
             {this.getAmountField()}
-            <Button onClick={this.handleSubmit}>Create Transaction</Button>
-            <Button onClick={this.createRandomTx}>Random Transaction</Button>
+            <Button onClick={this.handleSubmit}>{this.props.mobileLayout ? 'Create' : 'Create Transaction'}</Button>
+            <Button onClick={this.createRandomTx}>{this.props.mobileLayout ? 'Random' : 'Random Transaction'}</Button>
           </Form>
         </Card.Content>
       </Card>
