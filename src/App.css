@@ -1,5 +1,10 @@
 .kai-chain .top-container {
-  margin-top: 15px;
+  margin-top: 5px;
+}
+
+.kai-chain.mobile .top-container .ui.grid.tx-section {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .kai-chain.mobile .top-container .ui.grid.tx-section .column {

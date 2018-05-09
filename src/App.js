@@ -1,6 +1,6 @@
 require('./App.css');
 const React = require('react');
-const { Container, Grid, Divider } = require('semantic-ui-react');
+const { Container, Grid, Divider, Menu } = require('semantic-ui-react');
 const MinerList = require('./components/MinerList');
 const TxPool = require('./components/TxPool');
 const BlockChainDisplay = require('./components/BlockChainDisplay');
@@ -9,6 +9,7 @@ const BlockChain = require('./blockchain/blockchain');
 const TransactionPool = require('./blockchain/transaction-pool');
 const Wallet = require('./blockchain/wallet');
 const Miner = require('./blockchain/miner');
+const MenuBar = require('./components/MenuBar');
 
 /**
  * Top level component.
@@ -96,10 +97,9 @@ class App extends React.Component {
 
     return (
       <div className={className}>
-        <link rel="stylesheet" type="text/css" href="css/App.css" />
         <Container className="top-container">
+          <MenuBar />
           <MinerList miners={this.state.miners} newBlock={this.newBlock} />
-          <Divider />
           <Grid columns={2} className="tx-section">
             <Grid.Column>
               <TransactionForm

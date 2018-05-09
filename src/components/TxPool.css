@@ -5,3 +5,12 @@
 .kai-chain.mobile .tx-pool.card .content .header {
   font-size: 15px;
 }
+
+.kai-chain.mobile .tx-pool.card .tx-pool-message {
+  padding: 10px;
+  font-size: 12px;
+}
+
+.kai-chain.mobile .tx-pool.card .tx-pool-message .tx-pool-message-icon {
+  font-size: 25px;
+}

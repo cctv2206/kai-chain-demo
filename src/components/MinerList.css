@@ -1,0 +1,10 @@
+.kai-chain .miner-list {
+  overflow: auto;
+  white-space: nowrap;
+  margin-bottom: 10px;
+}
+
+.kai-chain.mobile .miner-list {
+  margin-left: -1em;
+  margin-right: -1em;
+}

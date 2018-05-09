@@ -1,3 +1,4 @@
+require('./MinerList.css');
 const React = require('react');
 const MinerDisplay = require('./MinerDisplay');
 
@@ -16,12 +17,8 @@ class MinerList extends React.Component {
   }
 
   render() {
-    const style = {
-      overflow: 'auto',
-      whiteSpace: 'nowrap'
-    };
     return (
-      <div className="miner-list" style={style}>
+      <div className="miner-list">
         {this.getMiners()}
       </div>
     );
